@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MasihA Portfolio</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+<script>
+tailwind.config = { darkMode:'class' }
+</script>
+
+<script>
+if(
+localStorage.getItem("theme")==="dark" ||
+(!localStorage.getItem("theme") &&
+window.matchMedia("(prefers-color-scheme: dark)").matches)
+){
+document.documentElement.classList.add("dark")
+}
+</script>
+
+<style>
+
+.reveal{
+opacity:0;
+transform:translateY(40px);
+transition:1s;
+}
+
+.reveal.active{
+opacity:1;
+transform:translateY(0);
+}
+
+.skills-wrapper{
+  position:relative;
+  width:100%;
+  overflow:hidden;
+  padding:30px 0;
+}
+
+.skills-container{
+  overflow:hidden;
+}
+
+.skills-track{
+  display:flex;
+  gap:50px;
+  width:max-content;
+  will-change:transform;
+}
+
+.skills-track span{
+  flex-shrink:0;
+  font-size:20px;
+  font-weight:bold;
+}
+
+/* fade دو طرف */
+
+.skills-fade-left,
+.skills-fade-right{
+  position:absolute;
+  top:0;
+  width:120px;
+  height:100%;
+  pointer-events:none;
+  z-index:2;
+}
+
+.skills-fade-left{
+  left:0;
+  background:linear-gradient(to right,#fff,transparent);
+}
+
+.skills-fade-right{
+  right:0;
+  background:linear-gradient(to left,#fff,transparent);
+}
+
+.dark .skills-fade-left{
+  background:linear-gradient(to right,#111827,transparent);
+}
+
+.dark .skills-fade-right{
+  background:linear-gradient(to left,#111827,transparent);
+}
+
+
+
+</style>
+
+</head>
+
+
+<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-white transition-colors duration-300">
+
+
+<!-- LOADER
+
+<div id="loader"
+class="fixed inset-0 flex items-center justify-center bg-white dark:bg-gray-900 z-50">
+
+<div class="animate-spin rounded-full h-16 w-16 border-4 border-indigo-500 border-t-transparent"></div>
+
+</div> -->
+
+
+<!-- NAVBAR -->
+
+<header class="bg-white dark:bg-gray-800 shadow fixed w-full z-40">
+
+<div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+
+<h1 class="text-xl font-bold">MasihA</h1>
+
+<nav class="hidden md:flex gap-6">
+
+<a href="#">خانه</a>
+<a href="#projects">پروژه ها</a>
+<a href="#skills">مهارت ها</a>
+<a href="#contact">تماس</a>
+
+</nav>
+
+<div class="flex items-center gap-4">
+
+<button id="themeToggle"
+class="relative w-14 h-7 bg-gray-300 dark:bg-gray-600 rounded-full">
+
+<span id="toggleCircle"
+class="absolute left-1 top-1 w-5 h-5 bg-white rounded-full flex items-center justify-center text-xs transition">
+
+🌙
+
+</span>
+
+</button>
+
+<button id="menuBtn" class="md:hidden text-2xl">☰</button>
+
+</div>
+
+</div>
+
+<div id="mobileMenu"
+class="hidden md:hidden bg-white dark:bg-gray-800 px-4 pb-4">
+
+<a class="block py-2">خانه</a>
+<a class="block py-2">پروژه ها</a>
+<a class="block py-2">مهارت ها</a>
+<a class="block py-2">تماس</a>
+
+</div>
+
+</header>
+
+
+
+<!-- HERO -->
+
+<section
+class="pt-40 pb-32 text-center bg-gradient-to-r from-indigo-500 to-cyan-500 text-white">
+
+<h2 class="text-5xl font-bold mb-4">
+
+سلام، من مسیحا هستم
+
+</h2>
+
+<p class="typing text-xl text-indigo-100"></p>
+
+<a href="#projects"
+class="inline-block mt-8 bg-white text-indigo-600 px-8 py-3 rounded-lg font-bold hover:scale-105 transition">
+
+مشاهده پروژه ها
+
+</a>
+
+</section>
+
+
+
+<!-- SKILLS -->
+
+<section id="skills" class="py-20 bg-gray-100 dark:bg-gray-800 reveal">
+
+<h3 class="text-2xl font-bold text-center mb-10">
+
+مهارت ها
+
+</h3>
+
+
+<div class="skills-wrapper">
+  <div class="skills-fade-left"></div>
+
+  <div class="skills-container">
+    <div class="skills-track" id="skillsTrack">
+      <span>HTML</span>
+      <span>CSS</span>
+      <span>Tailwind</span>
+      <span>JavaScript</span>
+      <span>UI Design</span>
+      <span>Responsive Design</span>
+      <span>Web Performance</span>
+    </div>
+  </div>
+
+  <div class="skills-fade-right"></div>
+</div>
+
+
+
+
+</section>
+
+
+
+<!-- PROJECTS -->
+
+<section id="projects" class="py-20 reveal">
+
+<div class="max-w-6xl mx-auto px-4">
+
+<h3 class="text-2xl font-bold text-center mb-10">
+
+پروژه ها
+
+</h3>
+
+<div class="flex justify-center gap-4 mb-10">
+
+<button class="filterBtn bg-indigo-500 text-white px-4 py-2 rounded" data-filter="all">
+همه
+</button>
+
+<button class="filterBtn bg-gray-200 px-4 py-2 rounded" data-filter="web">
+وب
+</button>
+
+<button class="filterBtn bg-gray-200 px-4 py-2 rounded" data-filter="ui">
+UI
+</button>
+
+</div>
+
+
+<div class="grid md:grid-cols-3 gap-8">
+
+<div class="project web bg-white dark:bg-gray-800 rounded shadow overflow-hidden cursor-pointer">
+
+<img src="https://picsum.photos/400/250">
+
+<div class="p-4">
+
+<h4 class="font-bold">فروشگاه اینترنتی</h4>
+<p class="text-sm text-gray-500">Web</p>
+
+</div>
+
+</div>
+
+
+<div class="project ui bg-white dark:bg-gray-800 rounded shadow overflow-hidden cursor-pointer">
+
+<img src="https://picsum.photos/401/250">
+
+<div class="p-4">
+
+<h4 class="font-bold">Landing Page</h4>
+<p class="text-sm text-gray-500">UI</p>
+
+</div>
+
+</div>
+
+
+<div class="project web bg-white dark:bg-gray-800 rounded shadow overflow-hidden cursor-pointer">
+
+<img src="https://picsum.photos/402/250">
+
+<div class="p-4">
+
+<h4 class="font-bold">Dashboard</h4>
+<p class="text-sm text-gray-500">Web</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- CONTACT -->
+
+<section id="contact"
+class="py-24 bg-indigo-500 text-white text-center reveal">
+
+<h3 class="text-3xl font-bold mb-6">
+
+برای همکاری آماده ام
+
+</h3>
+
+<br>
+
+<a
+class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-bold">
+
+تماس با من
+
+</a>
+
+</section>
+
+
+
+<!-- FOOTER -->
+
+<footer
+class="bg-gray-900 text-white py-10 text-center">
+
+<p>© 2026 MasihA</p>
+
+</footer>
+
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<script src="main.js"></script>
+
+</body>
+
+</html>
